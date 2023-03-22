@@ -67,7 +67,4 @@ class PropertyInfo:
         return self.property_object
 
 
-house = PropertyInfo(
-    "https://www.redfin.com/CA/La-Jolla/470-Rosemont-St-92037/home/4917581")
 
-print(house.get_property_image())
