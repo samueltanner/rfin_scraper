@@ -59,8 +59,8 @@ class PropertyInfo:
         return number_of_units_int
 
     def get_property_info(self):
-        self.get_property_image
-        self.get_listing_price
-        self.get_property_type
-        self.get_number_of_units
+        self.get_property_image()
+        self.get_listing_price()
+        self.get_property_type()
+        self.get_number_of_units()
         return self.property_object
