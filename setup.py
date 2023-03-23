@@ -1,21 +1,25 @@
-from setuptools import setup, find_packages
+from setuptools import setup
+
+with open('README.md', 'r') as f:
+    long_description = f.read()
 
 setup(
     name='finny_scraper',
-    version='0.2',
-    description='A property scraper for MLS entries',
-    classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-    ],
-    packages=find_packages(),
+    version='0.4',
+    description='A package for scraping property information from Finny website',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    author='Your Name',
+    author_email='your_email@example.com',
+    url='https://github.com/samueltanner/rfin_scraper',
+    packages=['finny_scraper'],
     install_requires=[
         'beautifulsoup4',
-        'requests',
+        'requests'
+    ],
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
     ],
 )
