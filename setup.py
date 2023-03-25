@@ -9,8 +9,6 @@ setup(
     description='A package for scraping property information from Finny website',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    author='Your Name',
-    author_email='your_email@example.com',
     url='https://github.com/samueltanner/rfin_scraper',
     packages=['finny_scraper'],
     install_requires=[
