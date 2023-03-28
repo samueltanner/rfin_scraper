@@ -127,6 +127,36 @@ class PropertyInfo:
             }
             return self.property_object['address']
 
+    def get_HOA_dues(self):
+        key_details_list = self.results.find(
+        class_="keyDetailsList").find_all("div", class_="keyDetail")
+        HOA_object = {
+            'payment': None,
+            'frequency': None
+        }
+        if key_details_list:
+            for detail in key_details_list:
+                header = detail.find('span', class_="header")
+                if header and header.text == "HOA Dues":
+                    content = detail.find('span', class_="content").text
+                    if content:
+                        clean_content = content.replace('$', '').replace(',', '')
+                        periods = ('month', 'year', 'week', 'day', 'quarter', 'semester')
+                        clean_content_list = ['200.54','YEARS']
+                        HOA_object['payment'] = round(float(clean_content_list[0])) if len(clean_content_list) > 0 else None
+                        if len(clean_content_list) > 1:
+                            for period in periods:
+                                if period in clean_content_list[1].lower():
+                                    HOA_object['frequency'] = period
+                                    break
+                        else:
+                            HOA_object['frequency'] = 'month'
+                        self.property_object['hoa'] = HOA_object
+                        return content
+                    break
+        self.property_object['hoa'] = HOA_object
+        return HOA_object
+
 
     def get_property_info(self):
         self.get_property_image()
@@ -134,8 +164,10 @@ class PropertyInfo:
         self.get_property_type()
         self.get_number_of_units()
         self.get_address_info()
+        self.get_HOA_dues()
         return self.property_object
 
-url = 'https://www.redfin.com/CA/San-Diego/3280-Reynard-Way-92103/home/5364230'
-house = PropertyInfo(url)
-print(house.get_property_info())
+# url = 'https://www.redfin.com/HI/Kailua/711-Wailepo-Pl-96734/unit-107/home/63838271'
+# house = PropertyInfo(url)
+# house.get_property_info()
+# print(house.get_property_info())
