@@ -156,6 +156,32 @@ class PropertyInfo:
                     break
         self.property_object['hoa'] = HOA_object
         return HOA_object
+    
+    def get_payment_info(self):
+        payment_info = {
+            'property_taxes': None,
+            'hoa': None,
+            'home_owners_insurance': None,
+            'mortgage_insurance': None,
+        }
+        color_bar_section = self.results.find('div', class_="colorBarLegend")
+
+        color_bar_section = self.results.find(
+                'section', class_="MortgageCalculatorSection")
+        monthly_cost_items = color_bar_section.find_all('span', class_="Row--header")
+        for item in monthly_cost_items:
+            title = item.text
+            if title == 'Property Taxes':
+                payment_info['property_taxes'] = int(item.next_sibling.text.replace('$',''))
+            if title == 'HOA Dues':
+                payment_info['hoa'] = int(item.next_sibling.text.replace('$',''))
+            if title == "Homeowners' Insurance":
+                payment_info['home_owners_insurance'] = int(item.next_sibling.text.replace('$',''))
+            if title == 'Mortgage Insurance':
+                payment_info['mortgage_insurance'] = int(item.next_sibling.text.replace('$',''))
+
+        self.property_object['payment_info'] = payment_info
+        return payment_info
 
 
     def get_property_info(self):
@@ -165,9 +191,11 @@ class PropertyInfo:
         self.get_number_of_units()
         self.get_address_info()
         self.get_HOA_dues()
+        self.get_payment_info()
         return self.property_object
 
-# url = 'https://www.redfin.com/HI/Kailua/711-Wailepo-Pl-96734/unit-107/home/63838271'
-# house = PropertyInfo(url)
-# house.get_property_info()
-# print(house.get_property_info())
+url = 'https://www.redfin.com/HI/Kailua/711-Wailepo-Pl-96734/unit-107/home/63838271'
+house = PropertyInfo(url)
+house.get_property_info()
+print(house.get_property_info()
+)
