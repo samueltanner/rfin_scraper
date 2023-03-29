@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: finny-scraper
-Version: 0.5
+Version: 0.6.1
 Summary: A package for scraping property information from Finny website
 Home-page: https://github.com/samueltanner/rfin_scraper
 License: UNKNOWN

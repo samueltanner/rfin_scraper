@@ -142,7 +142,7 @@ class PropertyInfo:
                     if content:
                         clean_content = content.replace('$', '').replace(',', '')
                         periods = ('month', 'year', 'week', 'day', 'quarter', 'semester')
-                        clean_content_list = ['200.54','YEARS']
+                        clean_content_list = clean_content.split('/')
                         HOA_object['payment'] = round(float(clean_content_list[0])) if len(clean_content_list) > 0 else None
                         if len(clean_content_list) > 1:
                             for period in periods:
