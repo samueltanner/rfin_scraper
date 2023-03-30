@@ -161,8 +161,6 @@ class PropertyInfo:
         payment_info = {
             'property_taxes': None,
             'hoa': None,
-            'home_owners_insurance': None,
-            'mortgage_insurance': None,
         }
         color_bar_section = self.results.find('div', class_="colorBarLegend")
 
@@ -175,13 +173,13 @@ class PropertyInfo:
                 payment_info['property_taxes'] = int(item.next_sibling.text.replace('$',''))
             if title == 'HOA Dues':
                 payment_info['hoa'] = int(item.next_sibling.text.replace('$',''))
-            if title == "Homeowners' Insurance":
-                payment_info['home_owners_insurance'] = int(item.next_sibling.text.replace('$',''))
-            if title == 'Mortgage Insurance':
-                payment_info['mortgage_insurance'] = int(item.next_sibling.text.replace('$',''))
-
         self.property_object['payment_info'] = payment_info
         return payment_info
+    
+    #TODO: add ability to scrape or estimate mortgage insurance
+    #TODO: add ability to scrape estiamted interest rate
+
+    #TODO: double check interest rate with google and possibly from bank api?
 
 
     def get_property_info(self):
