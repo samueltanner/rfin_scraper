@@ -171,14 +171,14 @@ class PropertyInfo:
         for item in monthly_cost_items:
             title = item.text
             if title == 'Property Taxes':
-                payment_info['property_taxes'] = int(item.next_sibling.text.replace('$',''))
+                payment_info['property_taxes'] = int(item.next_sibling.text.replace('$','').replace(',',''))
             if title == 'HOA Dues':
-                payment_info['hoa'] = int(item.next_sibling.text.replace('$',''))
+                payment_info['hoa'] = int(item.next_sibling.text.replace('$','').replace(',',''))
 
         mortgage_form = self.results.find('div', class_="MortgageCalculatorForm")
         interest_rate = mortgage_form.find('div', {'class': 'panel-title'}, text='Loan Details').find_next_sibling('div', {'class': 'panel-value'}).text.strip()
         if interest_rate:
-            payment_info['interest_rate_rf'] = float(interest_rate.replace('%', ''))
+            payment_info['interest_rate_rf'] = float(interest_rate.replace('%', '').replace(',',''))
 
         self.property_object['payment_info'] = payment_info
         return payment_info
