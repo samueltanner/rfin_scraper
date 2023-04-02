@@ -1,0 +1,5 @@
+[project]
+name = "rfin_scraper"
+authors = [
+    {name = "samueltanner", email = ""}
+]
