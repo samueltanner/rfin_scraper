@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='finny_scraper',
-    version='0.8',
+    version='0.9',
     description='A package for scraping property information from Finny website',
     long_description=long_description,
     long_description_content_type='text/markdown',
